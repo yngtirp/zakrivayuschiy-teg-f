@@ -4,13 +4,323 @@
 ✦ like-icon — для svg-иконки анимированного сердца
 ✦ card__like-button — для кнопки Like рядом с иконкой
 ✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
 ✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
 ✦ button__text — для обозначения текстового элемента внутри кнопки
 
 */
 
+html { 
+  display: grid;
+  justify-items: center;
+}
+
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
+  font-family: var(--main-font-family, sans-serif);
+  font-variation-settings: "wght" var(--main-font-weight, 400);
+  position: relative;
+  inline-size: 100vw;
+  max-inline-size: 700px;
+}
+
+.bg-gradient { 
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  background: repeating-linear-gradient(90deg, #d3d3d3 0 2px, rgb(0 0 0 / 0) 2px 4px), repeating-linear-gradient(180deg, #d3d3d3 0 2px, rgb(0 0 0 / 0) 2px 4px), linear-gradient(180deg, #e7e7e7 0%, #e7e7e7 0.01%, #1a1a1a 100%);
+}
+
+.header { 
+  width: 100%;
+  font-family: var(--accent-font-family, sans-serif);
+  margin-block: var(--header-margin, 100px);
+}
+
+.header-content { 
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  padding: 120px 14px;
+  border: 2px solid #000;
+  background-color: #fff;
+}
+
+.logo { 
+  font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.main-title { 
+  font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
+  text-transform: uppercase; 
+  text-align: center;
+}
+
+.card-list { 
+  display: grid;
+  gap: var(--main-gap, 50px);
+}
+
+.card { 
+  border: 2px solid #000;
+}
+
+.wrapper-img { 
+  position: relative;
+  overflow: hidden;
+  border-block-start: 2px solid #000;
+}
+
+.card__image { 
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  inline-size: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.image-text { 
+  position: absolute;
+  z-index: 1;
+  top: 25px;
+  right: 13px;
+  font-family: "PressStart2P", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  opacity: 0.5;
+  -webkit-text-stroke: 1px #fff;
+  mix-blend-mode: hard-light;
+}
+
+.card-list__item {
+  background-color: #fff;
+}
+
+.card__title {
+  font-variation-settings: "wght" var(--accent-font-weight, 700);
+  font-size: 18px;
+  padding: 4px 10px;
+  border-block-end: 2px solid #000;
+}
+
+.card__text-content { 
+  display: grid;
+  gap: 27px;
+  padding: 25px;
+  line-height: calc(21 / 18);
+  font-size: 18px;
+  border-block-start: 2px solid #000;
+}
+
+.buttons-field { 
+  display: flex;
+  justify-content: end;
+}
+
+.like-button { 
+  display: flex;
+  margin-inline-end: 25px;
+  padding-bottom: 25px;
+  align-items: center;
+  gap: 7px;
+  align-self: end;
+}
+
+.like-icon { 
+  display: block;
+}
+
+.card__icon-button { 
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-block-end: -5px;
+}
+
+.button { 
+  position: relative;
+  transition: 0.5s ease-in-out;
+}
+
+.button::after { 
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #000;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: 0.25s linear;
+}
+
+.button:hover::after{ 
+  transform: scaleX(1);
+}
+
+.button:hover { 
+  color: #fff;
+}
+
+.button:focus-visible { 
+  box-shadow: 2px 2px 0px 0px #000000;
+  transition: box-shadow 0.3s ease;
+}
+
+.card__like-button {   
+  border: 2px solid #000;
+  block-size: 38px;
+  inline-size: 130px;
+}
+
+.button__text { 
+  font-family: var(--accent-font-family, sans-serif);
+  font-size: 14px;
+  display: block;
+  justify-self: center;
+  position: relative;
+  z-index: 1;
+  line-height: 0.9;
+}
+
+.card-list__item:nth-child(2) .card .wrapper-img .card__image { 
+  filter: grayscale(70%);
+}
+
+.card-list__item:nth-child(3) .card .wrapper-img .card__image { 
+  filter: saturate(200%);
+}
+
+.card-list__item:nth-child(4) .card .wrapper-img .card__image { 
+  filter: contrast(120%) hue-rotate(30deg) saturate(120%);
+}
+
+.card-list__item:nth-child(5) .card .wrapper-img .card__image { 
+  filter: invert(100%);
+}
+
+.card-list__item:nth-child(6) .card .wrapper-img .card__image { 
+  filter: sepia(85%);
+}
+
+.card-list__item:nth-child(7) .card .wrapper-img .card__image { 
+  filter: blur(4px);
+}
+
+.card-list__item:nth-child(8) .card .wrapper-img .card__image { 
+  filter: hue-rotate(200deg);
+}
+
+.footer { 
+  display: flex;
+  justify-content: center;
+  margin-block: 50px var(--header-margin, 100px);
+}
+
+.floppy { 
+  block-size: 28px;
+  inline-size: 28px;
+  margin-top: 15px;
+  position: relative;
+  z-index: 1;
+  fill: #fff;
+}
+
+.footer-content { 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding-inline: 20px;
+  border: 2px solid #000;
+  background-color: #fff;
+  line-height: 0.9;
+}
+
+.footer-text { 
+  margin-bottom: 15px;
+}
+
+.dialog[open] { 
+  display: none;
+}
+
+.dialog[open] {
+  display: grid;
+  grid-template-rows: repeat(2, min-content);
+  gap: 30px;
+}
+
+.dialog { 
+  border: 2px solid #000;
+  padding: 25px 30px;
+  color: var(--text-color, #000000);
+  font-family: var(--accent-font-family, sans-serif);
+  line-height: 1.5;
+  text-transform: uppercase;
+  background: #fff;
+  max-inline-size: 355px;
+}
+
+.dialog__button {
+  inline-size: 100%;
+  border: 2px solid #000;
+  padding-block: 10px;
+  text-transform: uppercase;
+}
+
+.dialog__content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.dialog::backdrop {
+  opacity: 0.75;
+  background: #000;
+}
+
+.dialog__icon {
+  flex-shrink: 0;
+  inline-size: 39px;
+  block-size: 39px;
+}
+
+@media (width >= 1440px) { 
+  .header-content { 
+    padding-block: 128px;
+  }
+
+  .footer-content { 
+    flex-direction: row;
+    padding-inline: 19px 21px;
+    block-size: 55x;
+    padding-block: 15px;
+  }
+
+  .floppy { 
+    margin: 0;
+    inline-size: 21px;
+    block-size: 21px;
+  }
+
+  .footer-text { 
+    margin: 0;
+  }
+
+  .image-text { 
+    right: 25px;
+  }
+
+  .footer { 
+    margin-block-end: 103px;
+  }
 }
