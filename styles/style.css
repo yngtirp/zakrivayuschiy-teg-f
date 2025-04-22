@@ -247,11 +247,8 @@ html {
   margin-bottom: 15px;
 }
 
-.dialog[open] { 
-  display: none;
-}
-
 .dialog[open] {
+  display: none;
   display: grid;
   grid-template-rows: repeat(2, min-content);
   gap: 30px;
