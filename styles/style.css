@@ -22,16 +22,10 @@ html {
   position: relative;
   inline-size: 100vw;
   max-inline-size: 700px;
-}
-
-.bg-gradient { 
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 100vw;
-  height: 100vh;
-  background: repeating-linear-gradient(90deg, #d3d3d3 0 2px, rgb(0 0 0 / 0) 2px 4px), repeating-linear-gradient(180deg, #d3d3d3 0 2px, rgb(0 0 0 / 0) 2px 4px), linear-gradient(180deg, #e7e7e7 0%, #e7e7e7 0.01%, #1a1a1a 100%);
+  background-image: repeating-linear-gradient(90deg, #d3d3d3 0 2px, rgb(0 0 0 / 0) 2px 4px), repeating-linear-gradient(180deg, #d3d3d3 0 2px, rgb(0 0 0 / 0) 2px 4px), linear-gradient(180deg, #e7e7e7 0%, #e7e7e7 0.01%, #1a1a1a 100%);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 .header { 
@@ -75,7 +69,7 @@ html {
 .wrapper-img { 
   position: relative;
   overflow: hidden;
-  border-block-start: 2px solid #000;
+  border-block-start: 1px solid #000;
 }
 
 .card__image { 
@@ -95,8 +89,14 @@ html {
   font-size: 14px;
   font-weight: 400;
   opacity: 0.5;
-  -webkit-text-stroke: 1px #fff;
+  text-shadow: 0 0 1px #fff;
   mix-blend-mode: hard-light;
+}
+
+@supports (-webkit-text-stroke: 1px #fff) {
+  .image-text {
+    -webkit-text-stroke: 1px #fff;
+  }
 }
 
 .card-list__item {
@@ -107,7 +107,6 @@ html {
   font-variation-settings: "wght" var(--accent-font-weight, 700);
   font-size: 18px;
   padding: 4px 10px;
-  border-block-end: 2px solid #000;
 }
 
 .card__text-content { 
@@ -129,7 +128,7 @@ html {
   margin-inline-end: 25px;
   padding-bottom: 25px;
   align-items: center;
-  gap: 7px;
+  gap: 5px;
   align-self: end;
 }
 
@@ -141,15 +140,16 @@ html {
   background-color: transparent;
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-block-end: -5px;
+  border: 2px solid transparent;
+}
+
+.card__icon-button:focus-visible { 
+  border-color: #000;
 }
 
 .button { 
   position: relative;
-  transition: 0.5s ease-in-out;
+  transition: box-shadow 0.3s ease;
 }
 
 .button::after { 
@@ -159,20 +159,15 @@ html {
   background-color: #000;
   transform: scaleX(0);
   transform-origin: left;
-  transition: 0.25s linear;
+  transition: 0.5s ease-in-out;
 }
 
 .button:hover::after{ 
   transform: scaleX(1);
 }
 
-.button:hover { 
-  color: #fff;
-}
-
 .button:focus-visible { 
   box-shadow: 2px 2px 0px 0px #000000;
-  transition: box-shadow 0.3s ease;
 }
 
 .card__like-button {   
@@ -189,37 +184,39 @@ html {
   position: relative;
   z-index: 1;
   line-height: 0.9;
+  color: #fff;
+  mix-blend-mode: difference;
 }
 
-.card-list__item:nth-child(2) .card .wrapper-img .card__image { 
+.filter-grayscale { 
   filter: grayscale(70%);
 }
 
-.card-list__item:nth-child(3) .card .wrapper-img .card__image { 
+.filter-saturate { 
   filter: saturate(200%);
 }
 
-.card-list__item:nth-child(4) .card .wrapper-img .card__image { 
+.filter-contart-hue_rotate-saturate { 
   filter: contrast(120%) hue-rotate(30deg) saturate(120%);
 }
 
-.card-list__item:nth-child(5) .card .wrapper-img .card__image { 
+.filter-invert{ 
   filter: invert(100%);
 }
 
-.card-list__item:nth-child(6) .card .wrapper-img .card__image { 
+.filter-sepia { 
   filter: sepia(85%);
 }
 
-.card-list__item:nth-child(7) .card .wrapper-img .card__image { 
+.filter-blur { 
   filter: blur(4px);
 }
 
-.card-list__item:nth-child(8) .card .wrapper-img .card__image { 
+.filter-hue_rotate { 
   filter: hue-rotate(200deg);
 }
 
-.footer { 
+.save-area { 
   display: flex;
   justify-content: center;
   margin-block: 50px var(--header-margin, 100px);
@@ -231,10 +228,11 @@ html {
   margin-top: 15px;
   position: relative;
   z-index: 1;
-  fill: #fff;
+  color: #fff;
+  mix-blend-mode: difference;
 }
 
-.footer-content { 
+.save-area-content { 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -245,7 +243,7 @@ html {
   line-height: 0.9;
 }
 
-.footer-text { 
+.save-area-text { 
   margin-bottom: 15px;
 }
 
@@ -262,12 +260,12 @@ html {
 .dialog { 
   border: 2px solid #000;
   padding: 25px 30px;
-  color: var(--text-color, #000000);
   font-family: var(--accent-font-family, sans-serif);
   line-height: 1.5;
   text-transform: uppercase;
   background: #fff;
   max-inline-size: 355px;
+  font-size: 14px;
 }
 
 .dialog__button {
@@ -299,10 +297,10 @@ html {
     padding-block: 128px;
   }
 
-  .footer-content { 
+  .save-area-content { 
     flex-direction: row;
     padding-inline: 19px 21px;
-    block-size: 55x;
+    block-size: 55px;
     padding-block: 15px;
   }
 
@@ -312,7 +310,7 @@ html {
     block-size: 21px;
   }
 
-  .footer-text { 
+  .save-area-text { 
     margin: 0;
   }
 
@@ -320,7 +318,7 @@ html {
     right: 25px;
   }
 
-  .footer { 
+  .save-area { 
     margin-block-end: 103px;
   }
 }

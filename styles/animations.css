@@ -60,17 +60,6 @@
   transition: 0.3s 0.06s linear;
 }
 
-/* .is-liked .heart { 
-  animation: heart-scale 0.3s 0.1s ease-in 1; 
-  transition: 0.3s ease-in;
-  transform-origin: center;
-}
-
-.is-liked .sparks { 
-  animation: sparks-opacity 0.3s 0.3s ease-in 1;
-  transform-origin: center;
-} */
-
 .is-liked .heart {
   animation-name: heart-scale;
   animation-delay: 0.1s;
