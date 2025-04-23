@@ -95,6 +95,7 @@ html {
 
 @supports (-webkit-text-stroke: 1px #fff) {
   .image-text {
+    box-shadow: none;
     -webkit-text-stroke: 1px #fff;
   }
 }
@@ -141,6 +142,7 @@ html {
   margin: 0;
   padding: 0;
   border: 2px solid transparent;
+  transition: border-color 0.3s ease;
 }
 
 .card__icon-button:focus-visible { 
@@ -319,3 +321,5 @@ html {
     margin-block-end: 103px;
   }
 }
+
+/* Благодарю за прекрасное ревью, много чего подчеркнул для себя!  */
