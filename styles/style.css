@@ -95,7 +95,7 @@ html {
 
 @supports (-webkit-text-stroke: 1px #fff) {
   .image-text {
-    box-shadow: none;
+    text-shadow: none;
     -webkit-text-stroke: 1px #fff;
   }
 }
@@ -250,7 +250,6 @@ html {
 }
 
 .dialog[open] {
-  display: none;
   display: grid;
   grid-template-rows: repeat(2, min-content);
   gap: 30px;
